@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="เว็บไซต์แนะนำตัวของ ภควัต โพธิ์ดนัย หรือ แฟร้ง">
+<title>ภควัต โพธิ์ดนัย | Personal Portfolio</title>
+<style>
+:root {
+  --bg: #0d0d0f;
+  --bg2: #151217;
+  --card: #1b171d;
+  --text: #f5f2f4;
+  --muted: #b9afb6;
+  --accent: #8f2336;
+  --accent2: #c13a52;
+  --border: rgba(255,255,255,.09);
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: Arial, "Noto Sans Thai", sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+}
+body::before {
+  content:""; position: fixed; width: 500px; height: 500px;
+  background: rgba(143,35,54,.16); filter: blur(120px);
+  top: -180px; right: -120px; pointer-events:none; z-index:-1;
+}
+.container { width: min(1120px, 90%); margin: auto; }
+nav {
+  position: sticky; top: 0; z-index: 10;
+  backdrop-filter: blur(14px); background: rgba(13,13,15,.8);
+  border-bottom: 1px solid var(--border);
+}
+.nav-wrap { min-height: 70px; display:flex; align-items:center; justify-content:space-between; }
+.logo { font-size: 1.35rem; font-weight: 800; letter-spacing: 2px; }
+.logo span { color: var(--accent2); }
+.nav-links { display:flex; gap: 22px; flex-wrap:wrap; }
+.nav-links a { color:var(--muted); text-decoration:none; font-size:.92rem; }
+.nav-links a:hover { color:var(--text); }
+.hero {
+  min-height: calc(100vh - 70px); display:grid; grid-template-columns: 1.1fr .9fr;
+  align-items:center; gap: 60px; padding: 70px 0;
+}
+.badge { color:#f1c8d0; background:rgba(143,35,54,.18); border:1px solid rgba(193,58,82,.4); padding:7px 14px; border-radius:30px; display:inline-block; }
+.hero h1 { font-size:clamp(2.8rem,7vw,5.8rem); line-height:1.05; margin:20px 0 10px; }
+.hero h2 { color:var(--accent2); font-size:clamp(1.3rem,3vw,2rem); }
+.hero p { color:var(--muted); max-width:620px; margin:22px 0; font-size:1.05rem; }
+.buttons { display:flex; gap:14px; flex-wrap:wrap; }
+.btn { display:inline-block; padding:13px 22px; border-radius:10px; text-decoration:none; font-weight:bold; transition:.25s; }
+.btn-primary { background:var(--accent); color:white; }
+.btn-primary:hover { background:var(--accent2); transform:translateY(-2px); }
+.btn-outline { border:1px solid var(--border); color:var(--text); }
+.btn-outline:hover { border-color:var(--accent2); }
+.profile-wrap { position:relative; display:flex; justify-content:center; }
+.profile-wrap::before {
+  content:""; position:absolute; width:340px; height:340px; border-radius:50%;
+  background:var(--accent); filter:blur(80px); opacity:.32;
+}
+.profile {
+  width:min(390px,90vw); aspect-ratio:1/1; object-fit:cover; border-radius:28px;
+  position:relative; border:1px solid rgba(255,255,255,.15); box-shadow:0 25px 80px rgba(0,0,0,.45);
+}
+section { padding:95px 0; }
+.section-title { font-size:2.2rem; margin-bottom:12px; }
+.section-sub { color:var(--accent2); text-transform:uppercase; letter-spacing:2px; font-size:.8rem; margin-bottom:10px; }
+.lead { color:var(--muted); max-width:760px; margin-bottom:35px; }
+.grid { display:grid; grid-template-columns:repeat(3,1fr); gap:18px; }
+.grid-2 { display:grid; grid-template-columns:repeat(2,1fr); gap:20px; }
+.card {
+  background:linear-gradient(145deg, rgba(255,255,255,.045), rgba(255,255,255,.015));
+  border:1px solid var(--border); border-radius:18px; padding:25px;
+  transition:.25s;
+}
+.card:hover { transform:translateY(-5px); border-color:rgba(193,58,82,.45); }
+.card h3 { margin-bottom:9px; }
+.card p { color:var(--muted); }
+.timeline { border-left:2px solid var(--accent); padding-left:28px; display:grid; gap:25px; }
+.timeline-item { position:relative; }
+.timeline-item::before { content:""; width:12px; height:12px; background:var(--accent2); border-radius:50%; position:absolute; left:-35px; top:9px; }
+.year { color:var(--accent2); font-weight:bold; }
+.goal {
+  text-align:center; padding:75px 25px; border-radius:24px;
+  background:radial-gradient(circle at center, rgba(143,35,54,.32), rgba(27,23,29,.8));
+  border:1px solid var(--border);
+}
+.goal .small { letter-spacing:4px; color:var(--muted); }
+.goal .big { font-size:clamp(4rem,12vw,9rem); line-height:1; color:#fff; margin:15px 0; text-shadow:0 0 40px rgba(193,58,82,.4); }
+.contact-list { display:grid; gap:13px; }
+.contact-list a, .contact-list div {
+  color:var(--text); text-decoration:none; padding:15px 18px; background:var(--card);
+  border:1px solid var(--border); border-radius:12px;
+}
+.contact-list a:hover { border-color:var(--accent2); }
+footer { border-top:1px solid var(--border); padding:30px 0; text-align:center; color:var(--muted); }
+.reveal { opacity:0; transform:translateY(22px); transition:.7s ease; }
+.reveal.show { opacity:1; transform:none; }
+@media(max-width:800px) {
+  .nav-wrap { padding:12px 0; align-items:flex-start; flex-direction:column; }
+  .nav-links { gap:12px; }
+  .hero { grid-template-columns:1fr; text-align:center; padding:60px 0; }
+  .hero p { margin-left:auto; margin-right:auto; }
+  .buttons { justify-content:center; }
+  .profile-wrap { grid-row:1; }
+  .grid, .grid-2 { grid-template-columns:1fr; }
+  section { padding:70px 0; }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="container nav-wrap">
+    <div class="logo">FR<span>ANK</span>.</div>
+    <div class="nav-links">
+      <a href="#about">เกี่ยวกับผม</a>
+      <a href="#education">การศึกษา</a>
+      <a href="#skills">ทักษะ</a>
+      <a href="#hobbies">งานอดิเรก</a>
+      <a href="#contact">ติดต่อ</a>
+    </div>
+  </div>
+</nav>
+
+<main class="container">
+  <section class="hero">
+    <div class="reveal">
+      <span class="badge">STUDENT • LEARNER • FUTURE INVESTOR</span>
+      <h1>สวัสดีครับ<br>ผมแฟร้ง</h1>
+      <h2>นายภควัต โพธิ์ดนัย</h2>
+      <p>นักศึกษา อายุ 20 ปี ผู้ที่ชอบเรียนรู้จากการลงมือทำ เติบโตจากประสบการณ์ และมุ่งมั่นสร้างอนาคตของตัวเอง</p>
+      <div class="buttons">
+        <a class="btn btn-primary" href="#about">รู้จักผมมากขึ้น</a>
+        <a class="btn btn-outline" href="#contact">ติดต่อผม</a>
+      </div>
+    </div>
+    <div class="profile-wrap reveal">
+      <img class="profile" src="images/profile.jpg" alt="รูปโปรไฟล์ของแฟร้ง ภควัต">
+    </div>
+  </section>
+
+  <section id="about" class="reveal">
+    <div class="section-sub">ABOUT ME</div>
+    <h2 class="section-title">เกี่ยวกับผม</h2>
+    <p class="lead">ผมเป็นคนที่ชอบออกกำลังกายและเล่นกีฬา เวลาว่างชอบเล่นเกมและฟังเพลง เป็นคนที่เรียนรู้เร็ว โดยเฉพาะเมื่อได้ลงมือปฏิบัติจริง และมีความสนใจเกี่ยวกับการเงินและการลงทุน</p>
+    <div class="timeline">
+      <div class="timeline-item"><div class="year">จุดเริ่มต้น</div><h3>จังหวัดสกลนคร</h3><p>เกิดที่จังหวัดสกลนคร</p></div>
+      <div class="timeline-item"><div class="year">อายุ 3 ปี</div><h3>ย้ายไปพระราม 2</h3></div>
+      <div class="timeline-item"><div class="year">อายุ 8 ปี</div><h3>ย้ายไปนครปฐม</h3></div>
+      <div class="timeline-item"><div class="year">อายุ 9 ปี</div><h3>กลับมาสกลนคร</h3><p>และใช้ชีวิตต่อที่จังหวัดสกลนคร</p></div>
+    </div>
+  </section>
+
+  <section id="education" class="reveal">
+    <div class="section-sub">EDUCATION</div>
+    <h2 class="section-title">การศึกษา</h2>
+    <div class="card">
+      <h3>🎓 มหาวิทยาลัยเกษตรศาสตร์</h3>
+      <p><strong>วิทยาเขตเฉลิมพระเกียรติ จังหวัดสกลนคร</strong></p>
+      <p>ปัจจุบันกำลังศึกษาอยู่ในระดับปริญญาตรี</p>
+    </div>
+  </section>
+
+  <section id="skills" class="reveal">
+    <div class="section-sub">SKILLS</div>
+    <h2 class="section-title">ทักษะและความสามารถ</h2>
+    <div class="grid">
+      <div class="card"><h3>⚡ เรียนรู้เร็ว</h3><p>สามารถเรียนรู้สิ่งใหม่ ๆ ได้รวดเร็ว</p></div>
+      <div class="card"><h3>🛠️ Practical Learning</h3><p>เรียนรู้ได้ดีจากการลงมือปฏิบัติจริง</p></div>
+      <div class="card"><h3>🔄 Adaptability</h3><p>พร้อมปรับตัวและเรียนรู้งานใหม่</p></div>
+    </div>
+  </section>
+
+  <section id="hobbies" class="reveal">
+    <div class="section-sub">LIFESTYLE</div>
+    <h2 class="section-title">สิ่งที่ผมชอบ</h2>
+    <div class="grid">
+      <div class="card"><h3>🏋️ ออกกำลังกาย</h3><p>ชอบดูแลร่างกายและพัฒนาตัวเอง</p></div>
+      <div class="card"><h3>⚽ เล่นกีฬา</h3><p>สนุกกับกิจกรรมและการแข่งขัน</p></div>
+      <div class="card"><h3>🎧 ฟังเพลง</h3><p>ใช้เพลงเป็นส่วนหนึ่งของเวลาพักผ่อน</p></div>
+      <div class="card"><h3>🎮 เล่นเกม</h3><p>กิจกรรมยามว่างที่ช่วยให้ผ่อนคลาย</p></div>
+      <div class="card"><h3>💰 การเงิน</h3><p>สนใจเรียนรู้เรื่องการบริหารเงินและการลงทุน</p></div>
+      <div class="card"><h3>📈 การลงทุน</h3><p>สนใจสร้างความมั่นคงทางการเงินในอนาคต</p></div>
+    </div>
+  </section>
+
+  <section class="reveal">
+    <div class="section-sub">INTEREST</div>
+    <h2 class="section-title">สิ่งที่ผมสนใจ</h2>
+    <div class="grid-2">
+      <div class="card">
+        <h3>💰 การเงินและการลงทุน</h3>
+        <p>ผมสนใจเรื่องการเงินและการลงทุน และต้องการเรียนรู้เพิ่มเติมเกี่ยวกับการบริหารเงิน การลงทุน และการสร้างความมั่นคงทางการเงินในอนาคต</p>
+      </div>
+      <div class="card">
+        <h3>🚀 กำลังเรียนรู้</h3>
+        <p>ปัจจุบันกำลังเก็บเกี่ยวความรู้และประสบการณ์ใหม่ ๆ เพื่อพัฒนาตัวเองต่อไป</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="reveal">
+    <div class="goal">
+      <div class="small">MY GOAL</div>
+      <div class="big">รวย</div>
+      <p>สร้างอนาคตที่มั่นคง และประสบความสำเร็จในแบบของตัวเอง</p>
+    </div>
+  </section>
+
+  <section id="contact" class="reveal">
+    <div class="section-sub">CONTACT</div>
+    <h2 class="section-title">ติดต่อผม</h2>
+    <div class="contact-list">
+      <a href="mailto:Frank0806284298@gmail.com">📧 Frank0806284298@gmail.com</a>
+      <a href="tel:0829641640">📱 082-964-1640</a>
+      <div>🔵 Facebook: Phakawat Phodani</div>
+      <div>📸 Instagram: @fakx_00</div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="container">© 2026 Phakawat Phodani · Personal Portfolio</div>
+</footer>
+
+<script>
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) entry.target.classList.add('show');
+  });
+}, { threshold: 0.12 });
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
